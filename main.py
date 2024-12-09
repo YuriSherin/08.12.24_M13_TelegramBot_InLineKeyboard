@@ -157,6 +157,13 @@ async def send_calories(message, state):
         await UserState.GROWTH.set()
 
 
+@dp.message_handler()  # декоратор для обработки любых текстовых сообщений
+async def all_messages(message):
+    """Асинхронный метод отправки эхо-сообщений"""
+    msg = message.text[::-1]
+    await message.answer(msg)
+
+
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
